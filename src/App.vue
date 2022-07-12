@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
 import GamersList from "@/components/GamersList.vue";
 
@@ -45,7 +45,7 @@ function generateTeams() {
 
 <template>
   <main class="app">
-    <h1 class="title">Team Creator</h1>
+    <h1 class="title">Team Generator</h1>
 
     <div class="row">
       <div class="sidebar">
