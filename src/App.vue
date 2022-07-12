@@ -3,14 +3,14 @@ import { reactive, ref } from "vue";
 
 import GamersList from "@/components/GamersList.vue";
 
-const gamers = ref<Array<string>>([
+const gamers: Array<string> = [
   "Dawid",
   "Marcin W",
   "Marcin B",
   "Grzegorz",
   "Patryk",
   "Mateusz",
-]);
+];
 
 const checkedPlayers = ref<Array<string | null>>([]);
 const playersOnBoard = ref<Array<object | null>>([]);
@@ -59,21 +59,22 @@ function generateTeams() {
 
       <div class="board" v-if="showBoard">
         <div class="player">
-          <span>{{ playersOnBoard[0].name }}</span>
+          <span>{{ playersOnBoard[0]?.name }}</span>
           <span>Defence</span>
         </div>
         <div class="player">
-          <span>{{ playersOnBoard[1].name }}</span>
+          <span>{{ playersOnBoard[1]?.name }}</span>
           <span>Attack</span>
         </div>
         <div class="divider"></div>
         <div class="player">
-          <span>Attack</span>
-          <span>{{ playersOnBoard[2].name }}</span>
+          <span v-if="playersOnBoard.length > 3">Attack</span>
+          <span v-else>Attack/Defence</span>
+          <span>{{ playersOnBoard[2]?.name }}</span>
         </div>
-        <div class="player">
+        <div class="player" v-show="playersOnBoard.length > 3">
           <span>Defence</span>
-          <span>{{ playersOnBoard[3].name }}</span>
+          <span>{{ playersOnBoard[3]?.name }}</span>
         </div>
       </div>
     </div>
@@ -123,7 +124,7 @@ function generateTeams() {
 .btn {
   font-size: 24px;
   height: 40px;
-  padding-top: 100px;
+  margin-top: 100px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -179,7 +180,7 @@ function generateTeams() {
     justify-content: center;
   }
   .btn {
-    padding: 20px;
+    margin: 20px;
   }
   .board {
     margin-top: 20px;
